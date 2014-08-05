@@ -27,7 +27,14 @@ app.get('/tasks/new',function(req, res){
 });
 
 app.post('/tasks',function(req, res){
-  res.send('new-task');
+  var taskObject = {
+    name: req.body['name'],
+    due: req.body['due-date'],
+    photo: req.body['photo-url'],
+    tags: req.body['tags'],
+    priority: req.body['priority']
+  }
+  res.render('tasks', taskObject);
 });
 
 app.listen(3000, function(){
