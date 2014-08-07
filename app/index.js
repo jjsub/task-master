@@ -1,4 +1,4 @@
-'use strict'; 
+'use strict';
 
 var express = require('express');
 var morgan = require('morgan');
@@ -28,12 +28,12 @@ app.get('/tasks/new',function(req, res){
 
 app.post('/tasks',function(req, res){
   var taskObject = {
-    name: req.body['name'],
+    name: req.body.name,
     due: req.body['due-date'],
     photo: req.body['photo-url'],
-    tags: req.body['tags'],
-    priority: req.body['priority']
-  }
+    tags: req.body.tags,
+    priority: req.body.priority
+  };
   res.render('tasks', taskObject);
 });
 
