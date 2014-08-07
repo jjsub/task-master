@@ -15,7 +15,7 @@ table
     each task in tasks
       tr
         td #{task.name}
-        td #{task.due}
+        td #{moment(task.due).format("dddd, MMMM Do YYYY, h:mm:ss a")}
         td
           img(src="#{task.photo}", height="50")
         td #{task.tags}

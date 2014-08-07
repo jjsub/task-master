@@ -3,12 +3,13 @@
 var express = require('express');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
+var moment = require('moment');
 
-var logger = morgan();
-var app = express();
-var reqbody = bodyParser();
 var Task = require('./models/task');// export from task.js Task object
 
+var logger = morgan();
+var reqbody = bodyParser();
+var app = express();
 
 app.use(logger);
 app.use(reqbody);
@@ -16,8 +17,11 @@ app.use(reqbody);
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
 
+app.locals.moment = moment;
+
 app.get('/',function(req, res){
-  res.send('hi');
+  var now = moment();
+  res.send(now);
 });
 
 app.get('/tasks/new', function(req, res){
@@ -28,7 +32,7 @@ app.get('/tasks',function(req, res){
 
   var tasks = [{
       name: 'Hi',
-      due: '1/2/03',
+      due: new Date('1/2/03'),
       photo: 'http://i.imgur.com/prVZKtL.png',
       tags: 'Hi, You',
       priority: 'Low'
@@ -40,7 +44,7 @@ app.get('/tasks',function(req, res){
 app.post('/tasks',function(req, res){
   var tasks = [{
         name: 'Hi',
-        due: '1/2/03',
+        due: new Date('1/2/03'),
       photo: 'http://i.imgur.com/prVZKtL.png',
       tags: 'Hi, You',
       priority: 'Low'
