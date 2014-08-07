@@ -18,26 +18,44 @@ app.get('/',function(req, res){
   res.send('hi');
 });
 
-app.get('/tasks',function(req, res){
-  res.render('tasks');
-});
-
-app.get('/tasks/new',function(req, res){
+app.get('/tasks/new', function(req, res){
   res.render('new-task');
 });
 
+app.get('/tasks',function(req, res){
+
+  var taskObject = { tasks: [{
+      name: 'Hi',
+      due: '1/2/03',
+      photo: 'http://hello.com/hi.png',
+      tags: 'Hi, You',
+      priority: 'Low'
+  }]};
+
+  res.render('tasks', taskObject);
+});
+
 app.post('/tasks',function(req, res){
-  var taskObject = {
-    name: req.body.name,
-    due: req.body['due-date'],
-    photo: req.body['photo-url'],
-    tags: req.body.tags,
-    priority: req.body.priority
-  };
+  var taskObject = { tasks: [{
+        name: 'Hi',
+        due: '1/2/03',
+      photo: 'http://hello.com/hi.png',
+      tags: 'Hi, You',
+      priority: 'Low'
+  }]};
+
+  taskObject.tasks.push({
+      name: req.body.name,
+      due: req.body['due-date'],
+      photo: req.body['photo-url'],
+      tags: req.body.tags,
+      priority: req.body.priority
+    });
+
   res.render('tasks', taskObject);
 });
 
 app.listen(3000, function(){
-  console.log('Node listening on port 3000');
+  console.log('Node listening on port 3000 & love is good');
 });
 
