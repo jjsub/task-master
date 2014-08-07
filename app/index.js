@@ -26,29 +26,29 @@ app.get('/tasks/new', function(req, res){
 
 app.get('/tasks',function(req, res){
 
-  var taskObject = { tasks: [{
+  var tasks = [{
       name: 'Hi',
       due: '1/2/03',
       photo: 'http://hello.com/hi.png',
       tags: 'Hi, You',
       priority: 'Low'
-  }]};
+  }];
 
-  res.render('tasks', taskObject);
+  res.render('tasks', { tasks: tasks });
 });
 
 app.post('/tasks',function(req, res){
-  var taskObject = { tasks: [{
+  var tasks = [{
         name: 'Hi',
         due: '1/2/03',
       photo: 'http://hello.com/hi.png',
       tags: 'Hi, You',
       priority: 'Low'
-  }]};
+  }];
 
-  taskObject.tasks.push(new Task(req.body));
+  tasks.push(new Task(req.body));
 
-  res.render('tasks', taskObject);
+  res.render('tasks', { tasks: tasks });
 });
 
 app.listen(3000, function(){
