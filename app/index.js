@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 var logger = morgan();
 var app = express();
 var reqbody = bodyParser();
+var Task = require('./models/task');
+
 
 app.use(logger);
 app.use(reqbody);
@@ -44,13 +46,7 @@ app.post('/tasks',function(req, res){
       priority: 'Low'
   }]};
 
-  taskObject.tasks.push({
-      name: req.body.name,
-      due: req.body['due-date'],
-      photo: req.body['photo-url'],
-      tags: req.body.tags,
-      priority: req.body.priority
-    });
+  taskObject.tasks.push(new Task(req.body));
 
   res.render('tasks', taskObject);
 });

@@ -1,4 +1,5 @@
 h1 task page
+
 a(href="tasks/new") New
 
 table
@@ -7,16 +8,16 @@ table
       th Name
       th Due
       th Photo
-      th Complete
       th Tags
       th Priority
+      th Complete
   tbody
     each task in tasks
       tr
         td #{task.name}
         td #{task.due}
         td #{task.photo}
-        td
         td #{task.tags}
         td #{task.priority}
+        td
 
