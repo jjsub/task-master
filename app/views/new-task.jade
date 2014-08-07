@@ -8,5 +8,10 @@ form(action="/tasks", method="POST")
   label(for="tags") Tags
   input(type="text", name="tags")
   label(type="priority") Priority
-  input(type="text", name="priority")
+  select(name="priority")
+    option(value="high") High
+    option(value="medium") Medium
+    option(value="low") Low
+  // input(type="text", name="priority")
   button(type="submit") Submit
+
