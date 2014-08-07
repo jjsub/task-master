@@ -16,8 +16,11 @@ table
       tr
         td #{task.name}
         td #{task.due}
-        td #{task.photo}
+        td
+          img(src="#{task.photo}", height="50")
         td #{task.tags}
         td #{task.priority}
         td
+          button(type="checkbox")
+          button Hello
 

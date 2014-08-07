@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var logger = morgan();
 var app = express();
 var reqbody = bodyParser();
-var Task = require('./models/task');
+var Task = require('./models/task');// export from task.js Task object
 
 
 app.use(logger);
@@ -29,11 +29,11 @@ app.get('/tasks',function(req, res){
   var tasks = [{
       name: 'Hi',
       due: '1/2/03',
-      photo: 'http://hello.com/hi.png',
+      photo: 'http://i.imgur.com/prVZKtL.png',
       tags: 'Hi, You',
       priority: 'Low'
   }];
-
+                    // {tasks: tasks } is the array raped in a object
   res.render('tasks', { tasks: tasks });
 });
 
@@ -41,11 +41,11 @@ app.post('/tasks',function(req, res){
   var tasks = [{
         name: 'Hi',
         due: '1/2/03',
-      photo: 'http://hello.com/hi.png',
+      photo: 'http://i.imgur.com/prVZKtL.png',
       tags: 'Hi, You',
       priority: 'Low'
   }];
-
+  // This is the constructor 
   tasks.push(new Task(req.body));
 
   res.render('tasks', { tasks: tasks });
